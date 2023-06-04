@@ -66,6 +66,12 @@ canvas.addEventListener('pointermove', draw);
 canvas.addEventListener('pointerup', stopDrawing);
 canvas.addEventListener('pointerout', stopDrawing);
 
+// Event listeners for touch events
+canvas.addEventListener('touchstart', startDrawing);
+canvas.addEventListener('touchmove', draw);
+canvas.addEventListener('touchend', stopDrawing);
+canvas.addEventListener('touchcancel', stopDrawing);
+
 /* for default canvas
 
 // Function to start drawing
@@ -97,6 +103,7 @@ function draw(event) {
 
 //for reshaping the canvas
 function startDrawing(event) {
+  event.preventDefault(); // Prevent default touch behavior
   isDrawing = true;
   const canvasRect = canvas.getBoundingClientRect();
   const scaleX = canvas.width / canvasRect.width;
@@ -112,6 +119,7 @@ function startDrawing(event) {
 
 //scale the canvas
 function draw(event) {
+  event.preventDefault(); // Prevent default touch behavior
   if (!isDrawing) return;
   const canvasRect = canvas.getBoundingClientRect();
   const scaleX = canvas.width / canvasRect.width;
